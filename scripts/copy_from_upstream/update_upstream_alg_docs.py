@@ -57,9 +57,7 @@ def get_upstream_info(upstream_list, location):
     for i in upstream_list:
        if i['name'] == location:
            return i
-    print("Error: Cannot find location %s in upstream list" % (location))
-    print(upstream_list)
-    exit(1)
+    raise Exception(f'Error: Cannot find location {location} in upstream list: {upstream_list}')
 
 def get_oqs_yaml(param_list, name):
     ctr=0
