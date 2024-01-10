@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-# SPDX-License-Identifier: MIT
+#!/usr/bin/env python3
+
+"""Module to perform OQS repository operations."""
+import logging
+import logging
 
 import argparse
 import os
@@ -8,7 +12,7 @@ import subprocess
 import yaml
 import inspect
 
-DEBUG = 0
+
 
 def shell(command, expect=0):
     subprocess_stdout = None if DEBUG > 0 else subprocess.DEVNULL
@@ -387,6 +391,14 @@ def do_it(liboqs_root):
 
    if not write_changes:
        print("--write-changes not set; changes will not be written out.")
+   parser = argparse.ArgumentParser()
+   parser.add_argument("--liboqs-root", type=str, default=os.path.join("..", ".."))
+   parser.add_argument("-w", "--write-changes", dest="write_changes", action='store_true')
+   args = parser.parse_args()
+
+   liboqs_root = args.liboqs_root
+   write_changes = args.write_changes
+
    instructions = load_yaml(
        os.path.join(liboqs_root, 'scripts', 'copy_from_upstream', 'copy_from_upstream.yml'),
        encoding='utf-8')
@@ -397,6 +409,3 @@ def do_it(liboqs_root):
 
    update_upstream_kem_alg_docs(liboqs_root, instructions['kems'], instructions['upstreams'], write_changes)
    update_upstream_sig_alg_docs(liboqs_root, instructions['sigs'], instructions['upstreams'], write_changes)
-
-if __name__ == "__main__":
-   do_it(None)
