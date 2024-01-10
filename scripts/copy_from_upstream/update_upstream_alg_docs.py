@@ -15,7 +15,7 @@ import inspect
 
 
 def shell(command, expect=0):
-    subprocess_stdout = None if DEBUG > 0 else subprocess.DEVNULL
+    subprocess_stdout = None if DEBUG > 0 else None
     ret = subprocess.run(command, stdout=subprocess_stdout, stderr=subprocess_stdout)
     if ret.returncode != expect:
         raise Exception("'{}' failed with error {}. Expected {}.".format(" ".join(command), ret, expect))
