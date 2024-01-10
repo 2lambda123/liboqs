@@ -74,6 +74,14 @@ def get_oqs_yaml(param_list, name):
 # kems: List of kems in copy_from_upstream.yml
 # upstream_info: Hashtable of upstream information (keyed by upstream source)
 #  incl. entry: 'upstream_root' pointing to local folder containing source code
+"""Update upstream KEM algorithm documentation based on the upstream information.
+
+Args:
+    liboqs_root (str): The root path of the liboqs repository.
+    kems (List): List of kems in copy_from_upstream.yml.
+    upstream_info (Dict): Hashtable of upstream information (keyed by upstream source) incl. entry: 'upstream_root' pointing to local folder containing source code.
+    write_changes (bool): Flag indicating whether to write the changes back to the documentation files.
+"""
 def update_upstream_kem_alg_docs(liboqs_root, kems, upstream_info, write_changes=False):
     for kem in kems:
         ui = get_upstream_info(upstream_info, kem['upstream_location'])
