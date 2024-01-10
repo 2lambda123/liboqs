@@ -76,7 +76,11 @@ def get_oqs_yaml(param_list, name):
 #  incl. entry: 'upstream_root' pointing to local folder containing source code
 """Update upstream KEM algorithm documentation based on the upstream information.
 
-Args:
+# Args:
+    # liboqs_root (str): The root path of the liboqs repository.
+    # kems (List): List of kems in copy_from_upstream.yml
+    # upstream_info (Dict): Hashtable of upstream information (keyed by upstream source) incl. entry: 'upstream_root' pointing to local folder containing source code.
+    # write_changes (bool): Flag indicating whether to write the changes back to the documentation files.
     liboqs_root (str): The root path of the liboqs repository.
     kems (List): List of kems in copy_from_upstream.yml.
     upstream_info (Dict): Hashtable of upstream information (keyed by upstream source) incl. entry: 'upstream_root' pointing to local folder containing source code.
@@ -382,6 +386,7 @@ def do_it(liboqs_root):
    global DEBUG
    if liboqs_root == None:
       parser = argparse.ArgumentParser()
+# Configure the argument parser
       parser.add_argument("--liboqs-root", default=os.path.join("..", ".."))
       parser.add_argument("-w", "--write-changes", dest="write_changes", action='store_true')
       parser.add_argument("-v", "--verbosity", type=int)
