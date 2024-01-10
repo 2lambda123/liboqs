@@ -65,7 +65,7 @@ def get_oqs_yaml(param_list, name):
        if i['name'] == name:
            return ctr, i
        ctr=ctr+1
-    print("Error: Cannot find name %s in param list" % (name))
+    raise Exception(f'Error: Cannot find name {name} in param list: {param_list}')
     print(param_list)
     exit(1)
 
